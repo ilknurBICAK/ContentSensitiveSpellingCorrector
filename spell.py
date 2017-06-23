@@ -5,7 +5,6 @@ import edit
 import sys
 
 connection = MySQLdb.connect (host = "localhost", user = "root", passwd = "161214tz", db = "nlp",charset='utf8')
-
 cursor = connection.cursor ()
 previousWord=''
 nextWord=''
@@ -77,6 +76,9 @@ for i in range(0,len(predicts)):
 for i in range(0,len(predicts)):
     totalCount.append(predictsPreCount[i]+predictsNextCount[i])
 maximum = getMax(totalCount)
-words[errorIndex] = predicts[maximum]
+if(len(predicts)!=0):
+    words[errorIndex] = predicts[maximum]
+else:
+    print 'Hata, tahmin bulunamadi !!!'
 for i in range(0,len(words)):
     print words[i]
